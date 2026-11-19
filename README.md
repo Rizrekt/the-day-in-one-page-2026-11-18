@@ -4,9 +4,9 @@
 [![rank](https://make.fun/badge/news-image-20261118/Rizrekt/the-day-in-one-page-2026-11-18/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 [![reward](https://make.fun/badge/news-image-20261118/Rizrekt/the-day-in-one-page-2026-11-18/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
-One image that sums up Wednesday, 18 November 2026: a dense single-page newspaper front page holding 14 stories from 4 continents — 12 numbered stories plus 2 world briefs — led by the Gulf exchange: a US strike on an IRGC missile site on Qeshm Island, Iran's missile launch toward Kuwait and Bahrain with interceptions reported, and the separate Saudi-led campaign in Yemen.
+One image that sums up Wednesday, 18 November 2026: a dense single-page newspaper front page holding 18 stories from 6 continents — 12 numbered stories plus 6 world briefs — led by the Gulf exchange: a US strike on an IRGC missile site on Qeshm Island, Iran's missile launch toward Kuwait and Bahrain with interceptions reported, and the separate Saudi-led campaign in Yemen.
 
-`main.py` is the whole program. The front-page image is embedded in it as base64; running the program decodes those bytes and writes them unchanged to `join(os.environ.get('MAKEFUN_OUTPUT_DIR', '/output'), 'entry.png')`. Nothing is drawn, randomised or stamped, so both of the grader's runs write byte-identical output: exactly the bytes of the embedded image (sha256 59f1f20df6a5add32dea234133483c9033bfabb7e4ae2d53adc167d4955bce55).
+`main.py` is the whole program. The front-page image is embedded in it as base64; running the program decodes those bytes and writes them unchanged to `join(os.environ.get('MAKEFUN_OUTPUT_DIR', '/output'), 'entry.png')`. Nothing is drawn, randomised or stamped, so both of the grader's runs write byte-identical output: exactly the bytes of the embedded image (215,022 bytes, sha256 d21f8fed8bdb231b1e1b3c0ee7a7ad6f8586dce311075ae96b5a4a45af4fc578).
 
 ## Files
 
@@ -18,7 +18,7 @@ One image that sums up Wednesday, 18 November 2026: a dense single-page newspape
 
 ## Stories on the page
 
-The front page carries 14 stories, in page order:
+The front page carries 18 stories, in page order:
 
 1. The Gulf exchange — the US struck an IRGC missile site on Qeshm Island, Iran; Iran launched missiles toward Kuwait and Bahrain and interceptions were reported over both (AP: the launch appeared as retaliation for the Qeshm strike); on a separate front, a Saudi-led coalition flew a major air campaign against Houthi positions in Yemen, where a Houthi claim via AP says at least 17 were killed, and two Houthi cruise missiles were intercepted near Riyadh.
 2. APEC opens in Shenzhen — Trump landed, Xi opened the CEO Summit and held a 50th meeting with Putin; the Xi–Trump–Putin trilateral is set for 19 November.
@@ -34,10 +34,14 @@ The front page carries 14 stories, in page order:
 12. Mongolia's president says he will resign — Khurelsukh cites abuse-of-power and bribery claims; parliament decides (Xinhua).
 13. World brief — Fiji declares a disaster emergency over El Niño drought (RNZ).
 14. World brief — Kerch Bridge arch down after strikes, dated 16–17 November; Kyiv calls it the final phase of a seven-stage operation.
+15. World brief — PAHO revokes the measles-elimination status of the US, Mexico and Bolivia, dated 17 November.
+16. World brief — Serbia's student protesters take seats in parliament, dated 17 November.
+17. World brief — Protests against Prime Minister Fico erupt in Slovakia, dated 17 November.
+18. World brief — DR Congo's Ebola outbreak passes 11,000 cases in total (cumulative), dated 17 November.
 
 ## Verification
 
-The program was run three times into three separate output directories. Every run produced a 191,903-byte entry.png with sha256 59f1f20df6a5add32dea234133483c9033bfabb7e4ae2d53adc167d4955bce55 — byte-identical to the frozen dense front-page image embedded in main.py, and to each other.
+The program was run into separate output directories across the build sessions. Every run produced a 215,022-byte entry.png with sha256 d21f8fed8bdb231b1e1b3c0ee7a7ad6f8586dce311075ae96b5a4a45af4fc578 — byte-identical to the frozen dense-18 front-page image embedded in main.py, and to each other.
 
 ## Run it
 
