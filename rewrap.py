@@ -10,32 +10,34 @@ TARGET = REPO_DIR / "main.py"
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
 
-def main() -> None:
+def main():
     text = TARGET.read_text(encoding="utf-8")
     tree = ast.parse(text)
 
-    assignment = None
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Assign) and any(
-            isinstance(target, ast.Name) and target.id == "PNG_B64" for target in node.targets
+    node = None
+    for stmt in tree.body:
+        if (
+            isinstance(stmt, ast.Assign)
+            and len(stmt.targets) == 1
+            and isinstance(stmt.targets[0], ast.Name)
+            and stmt.targets[0].id == "PNG_B64"
         ):
-            assignment = node
+            node = stmt
             break
-    if assignment is None:
-        raise SystemExit(f"no PNG_B64 assignment found in {TARGET}")
+    if node is None:
+        raise SystemExit("no PNG_B64 assignment found in %s" % TARGET)
 
-    value = ast.literal_eval(assignment.value)
-    payload = value if isinstance(value, str) else "".join(value)
+    payload = ast.literal_eval(node.value)
     decoded = base64.b64decode(payload)
     if not decoded.startswith(PNG_MAGIC):
         raise SystemExit("decoded payload does not start with the PNG magic bytes")
 
-    lines = text.splitlines(keepends=True)
-    lines[assignment.lineno - 1 : assignment.end_lineno] = [f'PNG_B64 = "{payload}"\n']
-    TARGET.write_text("".join(lines), encoding="utf-8")
+    lines = text.splitlines()
+    lines[node.lineno - 1:node.end_lineno] = ['PNG_B64 = "%s"' % payload]
+    TARGET.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    print(f"Rewrapped {len(payload)} base64 chars onto a single line")
-    print(f"Decoded {len(decoded)} bytes")
+    print("rewrapped base64 chars: %d" % len(payload))
+    print("decoded bytes: %d" % len(decoded))
 
 
 if __name__ == "__main__":
